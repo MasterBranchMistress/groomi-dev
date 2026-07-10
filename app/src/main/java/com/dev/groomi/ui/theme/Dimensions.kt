@@ -10,6 +10,10 @@ object Dimensions {
 
     val TopBarHeight = 64.dp
 
+    val ButtonCornerRadius = 8.dp
+
+    val ButtonWidth = 12.dp
+
     val CardCornerRadius = 16.dp
 
     val DialogCornerRadius = 24.dp
