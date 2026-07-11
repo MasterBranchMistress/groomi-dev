@@ -1,5 +1,6 @@
 package com.dev.groomi.auth.ui
 
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,7 +19,7 @@ fun LoginScreen(onRegisterClick: () -> Unit) {
             //TODO("Replace with ViewModel")
             var email by rememberSaveable() { mutableStateOf("") }
             var password by rememberSaveable() { mutableStateOf("") }
-            GroomiScreen {
+            GroomiScreen{
                 GroomiLogoMain()
                 GroomiTextField(value = email, onValueChange = {email =  it}, label = "Email" )
                 GroomiTextField(value=password, onValueChange = {password =  it}, visualTransformation = PasswordVisualTransformation(), label ="Password")

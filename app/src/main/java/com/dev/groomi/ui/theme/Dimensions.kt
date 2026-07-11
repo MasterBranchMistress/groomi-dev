@@ -4,13 +4,13 @@ import androidx.compose.ui.unit.dp
 
 object Dimensions {
 
-    val ButtonHeight = 56.dp
+    val ButtonHeight = 40.dp
 
-    val TextFieldHeight = 56.dp
+    val TextFieldHeight = 52.dp
 
     val TopBarHeight = 64.dp
 
-    val ButtonCornerRadius = 8.dp
+    val ButtonCornerRadius = 4.dp
 
     val ButtonWidth = 12.dp
 
