@@ -25,7 +25,7 @@ class AuthenticationViewModel : ViewModel() {
         }
     }
 
-    fun login() {
+    fun onLoginClick() {
         // TODO: Authenticate through Repository
     }
 }

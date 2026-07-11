@@ -19,7 +19,7 @@ fun LoginRoute(
         uiState =  authenticationUiState,
         onEmailChange =  viewModel::onEmailChange,
         onPasswordChange =  viewModel::onPasswordChange,
-        login =  viewModel::login,
+        onLoginClick =  viewModel::onLoginClick,
         onRegisterClick = {
             navController.navigate(Screen.Register.route)
         }
