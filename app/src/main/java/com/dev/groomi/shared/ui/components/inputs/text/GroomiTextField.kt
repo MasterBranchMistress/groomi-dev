@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation.Companion.None
+import com.dev.groomi.ui.theme.CarbonBlack
 import com.dev.groomi.ui.theme.Dimensions
+import com.dev.groomi.ui.theme.RoyalOrchid
 import com.dev.groomi.ui.theme.Spacing
 
 @Composable
@@ -17,7 +19,7 @@ fun GroomiTextField(value: String, onValueChange: (String) -> Unit, label: Strin
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label) },
+        label = { Text(label, color = CarbonBlack) },
         visualTransformation = visualTransformation,
         modifier = Modifier
             .fillMaxWidth()

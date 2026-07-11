@@ -10,6 +10,7 @@ import com.dev.groomi.shared.ui.components.auth.AuthFooter
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
+import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
 @Composable
@@ -22,7 +23,7 @@ fun RegisterScreen(onLoginClick: () -> Unit){
     var password by rememberSaveable() {mutableStateOf("") }
     var confirmPassword by rememberSaveable() {mutableStateOf("") }
     GroomiScreen {
-        GroomiLogoMain()
+        GroomiLogoSecondary()
         GroomiTextField(value = firstName, onValueChange = {firstName = it}, label = "First Name" )
         GroomiTextField(value = lastName, onValueChange = {lastName = it}, label = "Last Name" )
         GroomiTextField(value = email, onValueChange = {email = it}, label = "Email" )
