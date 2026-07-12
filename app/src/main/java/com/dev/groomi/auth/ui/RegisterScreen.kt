@@ -7,6 +7,7 @@ import com.dev.groomi.auth.viewmodel.RegisterUiState
 import com.dev.groomi.shared.ui.components.auth.AuthFooter
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
+import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
@@ -24,11 +25,11 @@ fun RegisterScreen(
 ){
     GroomiScreen {
         GroomiLogoSecondary()
-        GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name" )
-        GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name" )
-        GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email" )
-        GroomiTextField(value = uiState.phoneNumber, onValueChange = onPhoneNumberChange, label = "Phone" )
-        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Password" )
+        GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError)
+        GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError )
+        GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
+        GroomiTextField(value = uiState.phoneNumber, onValueChange = onPhoneNumberChange, label = "Phone", errorMessage = uiState.phoneNumberError)
+        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Password", errorMessage = uiState.passwordError)
         GroomiTextField(value = uiState.confirmPassword, onValueChange = onConfirmPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Confirm Password" )
         GroomiButton(onClick=onRegisterClick, text = "Register")
         AuthFooter(prompt = "Already have an account?", actionText = "Sign in", onClick = onLoginClick)

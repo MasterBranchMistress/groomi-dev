@@ -1,8 +1,8 @@
 package com.dev.groomi.auth.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.dev.groomi.auth.validation.AuthenticationValidator
-import com.dev.groomi.shared.validation.ValidationField
+import com.dev.groomi.auth.validation.fields.AuthenticationFields
+import com.dev.groomi.auth.validation.validators.AuthenticationValidator
 import com.dev.groomi.shared.validation.ValidationResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,13 +23,15 @@ class AuthenticationViewModel : ViewModel() {
 
     fun onEmailChange(email: String) {
         _uiState.update {
-            it.copy(email = email)
+            it.copy(email = email,
+                emailError = null)
         }
     }
 
     fun onPasswordChange(password: String) {
         _uiState.update {
-            it.copy(password = password)
+            it.copy(password = password,
+                passwordError = null)
         }
     }
 
@@ -37,30 +39,23 @@ class AuthenticationViewModel : ViewModel() {
         val result = AuthenticationValidator.validateLogin(email = uiState.value.email,
             password = uiState.value.password)
         when(result) {
-            is ValidationResult.Error -> {
-
-                when(result.field) {
-
-                    ValidationField.EMAIL -> {
-                        _uiState.update {
-                            it.copy(
-                                emailError = result.message
-                            )
-                        }
-                    }
-
-                    ValidationField.PASSWORD -> {
-                        _uiState.update {
-                            it.copy(
-                                passwordError = result.message
-                            )
-                        }
-                    }
-                }
+            is ValidationResult.Error<AuthenticationFields> -> {
+                updateValidationError(result)
             }
 
             ValidationResult.Success -> {
                 //TODO: authenticate with fake Repository
+            }
+        }
+    }
+    private fun updateValidationError(error: ValidationResult.Error<AuthenticationFields>) {
+        _uiState.update {
+            when (error.field) {
+                AuthenticationFields.EMAIL ->
+                    it.copy(emailError = error.message)
+
+                AuthenticationFields.PASSWORD ->
+                    it.copy(passwordError = error.message)
             }
         }
     }

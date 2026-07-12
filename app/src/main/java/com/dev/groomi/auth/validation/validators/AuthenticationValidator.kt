@@ -1,6 +1,6 @@
-package com.dev.groomi.auth.validation
+package com.dev.groomi.auth.validation.validators
 
-import com.dev.groomi.shared.validation.ValidationField
+import com.dev.groomi.auth.validation.fields.AuthenticationFields
 import com.dev.groomi.shared.validation.ValidationResult
 
 object AuthenticationValidator {
@@ -8,20 +8,20 @@ object AuthenticationValidator {
     fun validateLogin(
         email: String,
         password: String
-    ): ValidationResult {
+    ): ValidationResult<AuthenticationFields> {
 
         if (email.isBlank()) {
-            return ValidationResult.Error(ValidationField.EMAIL,
+            return ValidationResult.Error(AuthenticationFields.EMAIL,
                 "Email is required.")
         }
 
         if (password.isBlank()) {
-            return ValidationResult.Error(ValidationField.PASSWORD,
+            return ValidationResult.Error(AuthenticationFields.PASSWORD,
                 "Password is required")
         }
 
         if (password.length < 6) {
-            return ValidationResult.Error(ValidationField.PASSWORD,
+            return ValidationResult.Error(AuthenticationFields.PASSWORD,
                 "Password must be at least 6 characters")
         }
 
