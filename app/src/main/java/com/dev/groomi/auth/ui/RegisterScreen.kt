@@ -24,7 +24,7 @@ fun RegisterScreen(
     uiState: RegisterUiState
 ){
     GroomiScreen {
-        GroomiLogoSecondary()
+        GroomiLogoMain()
         GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError)
         GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError )
         GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
