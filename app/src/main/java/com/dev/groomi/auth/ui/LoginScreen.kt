@@ -21,8 +21,8 @@ fun LoginScreen(
 ) {
             GroomiScreen{
                 GroomiLogoMain()
-                GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email" )
-                GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label ="Password")
+                GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
+                GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label ="Password", errorMessage = uiState.passwordError)
                 GroomiButton(onClick = onLoginClick, text = "Login")
                 GroomiTextButton(buttonText = "Forgot Password?", temporaryText = "Forgot Password coming soon!", onClick = {println(message = "Forgot Password Clicked.")} )
                 AuthFooter(prompt = "Don't have an Account?", actionText = "Sign Up", onClick = onRegisterClick)
