@@ -14,6 +14,8 @@ object Dimensions {
 
     val ButtonWidth = 12.dp
 
+    val ButtonLoadingSpinnerSize = 20.dp
+
     val CardCornerRadius = 16.dp
 
     val DialogCornerRadius = 24.dp
@@ -23,4 +25,6 @@ object Dimensions {
     val AvatarMedium = 56.dp
 
     val AvatarLarge = 96.dp
+
+    val LogoSizeMedium = 240.dp
 }

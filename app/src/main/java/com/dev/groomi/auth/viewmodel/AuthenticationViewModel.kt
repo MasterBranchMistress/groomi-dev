@@ -8,6 +8,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 data class AuthenticationUiState(val email: String = "",
                                  val password: String = "",
@@ -35,7 +39,7 @@ class AuthenticationViewModel : ViewModel() {
         }
     }
 
-    fun onLoginClick() {
+     fun onLoginClick() {
         val result = AuthenticationValidator.validateLogin(email = uiState.value.email,
             password = uiState.value.password)
         when(result) {
@@ -44,7 +48,14 @@ class AuthenticationViewModel : ViewModel() {
             }
 
             ValidationResult.Success -> {
-                //TODO: authenticate with fake Repository
+                viewModelScope.launch {
+                    setLoadingState(true)
+
+                    // TODO: Repository.login(...)
+                    delay(2000.milliseconds)
+
+                    setLoadingState(false)
+                }
             }
         }
     }
@@ -57,6 +68,12 @@ class AuthenticationViewModel : ViewModel() {
                 AuthenticationFields.PASSWORD ->
                     it.copy(passwordError = error.message)
             }
+        }
+    }
+
+    private fun setLoadingState(isLoading: Boolean){
+        _uiState.update {
+            it.copy(isLoading=isLoading)
         }
     }
 }

@@ -1,13 +1,17 @@
 package com.dev.groomi.auth.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dev.groomi.auth.validation.fields.RegistrationFields
 import com.dev.groomi.auth.validation.validators.RegistrationValidator
 import com.dev.groomi.shared.validation.ValidationResult
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 data class RegisterUiState(val firstName: String="",
                            val lastName: String="",
@@ -20,6 +24,7 @@ data class RegisterUiState(val firstName: String="",
                            val emailError: String?=null,
                            val phoneNumberError: String?=null,
                            val passwordError: String?=null,
+                           val isLoading: Boolean=false,
     )
 
 class RegisterViewModel : ViewModel() {
@@ -66,7 +71,7 @@ class RegisterViewModel : ViewModel() {
                 it.copy(confirmPassword = confirmPassword)
             }
         }
-            fun onRegisterClick() {
+             fun onRegisterClick() {
                 // TODO: Register to Repository
                 val result = RegistrationValidator.validateRegistration(
                     firstName = uiState.value.firstName,
@@ -81,7 +86,12 @@ class RegisterViewModel : ViewModel() {
                         updateValidationError(result)
                     }
                     ValidationResult.Success -> {
-                        //TODO: register with fake Repository
+                        viewModelScope.launch {
+                            setLoadingState(true)
+                            // TODO: Repository.register(...)
+                            delay(2000.milliseconds) // Fake API call
+                            setLoadingState(false)
+                        }
                     }
                 }
             }
@@ -103,6 +113,11 @@ class RegisterViewModel : ViewModel() {
                 RegistrationFields.PASSWORD ->
                     it.copy(passwordError = error.message)
             }
+        }
+    }
+    private fun setLoadingState(isLoading: Boolean){
+        _uiState.update {
+            it.copy(isLoading=isLoading)
         }
     }
 }

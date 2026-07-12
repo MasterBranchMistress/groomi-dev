@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,9 +16,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation.Companion.None
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.dev.groomi.ui.theme.Amethyst
 import com.dev.groomi.ui.theme.CarbonBlack
 import com.dev.groomi.ui.theme.Dimensions
 import com.dev.groomi.ui.theme.Error
+import com.dev.groomi.ui.theme.LavenderGrey
 import com.dev.groomi.ui.theme.RoyalOrchid
 import com.dev.groomi.ui.theme.Spacing
 
@@ -31,7 +34,13 @@ fun GroomiTextField(value: String,
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text("$label*", color = CarbonBlack) },
+        label = { Text("$label*") },
+        colors = OutlinedTextFieldDefaults.colors(
+            unfocusedLabelColor = LavenderGrey,
+            focusedLabelColor = RoyalOrchid,
+            unfocusedBorderColor = LavenderGrey,
+            focusedBorderColor = RoyalOrchid
+        ),
         visualTransformation = visualTransformation,
         modifier = Modifier
             .fillMaxWidth()
