@@ -1,6 +1,8 @@
 package com.dev.groomi.auth.ui
 
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.dev.groomi.auth.viewmodel.RegisterUiState
@@ -23,7 +25,7 @@ fun RegisterScreen(
     onConfirmPasswordChange: (String) -> Unit,
     uiState: RegisterUiState
 ){
-    GroomiScreen {
+    GroomiScreen() {
         GroomiLogoMain()
         GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError)
         GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError )
