@@ -8,7 +8,7 @@ sealed interface LoginResult{
     data object Failure: LoginResult
 }
 
-class FakeAuthenticationRepository : AuthRepositoryInterface {
+class FakeAuthenticationRepository : LoginRepositoryInterface {
 
     override suspend fun login(
         email: String,

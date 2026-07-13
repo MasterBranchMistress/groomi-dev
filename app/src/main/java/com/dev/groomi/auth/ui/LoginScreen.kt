@@ -10,6 +10,7 @@ import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.buttons.GroomiTextButton
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
+import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
 @Composable

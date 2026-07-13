@@ -1,6 +1,6 @@
 package com.dev.groomi.auth.repository.login
 
-interface AuthRepositoryInterface {
+interface LoginRepositoryInterface {
 
     suspend fun login(
         email: String,

@@ -30,13 +30,19 @@ fun GroomiTextField(value: String,
                     label: String,
                     modifier: Modifier = Modifier,
                     visualTransformation: VisualTransformation = None,
-                    supportingText:  String?=null,
                     errorMessage: String?=null){
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = { Text("$label*") },
-        supportingText = {if(supportingText != null) Text(supportingText)},
+        supportingText = {
+            errorMessage?.let {
+                Text(
+                    text = it,
+                    color = Error
+                )
+            }
+        },
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedLabelColor = LavenderGrey,
             focusedLabelColor = RoyalOrchid,
@@ -54,14 +60,4 @@ fun GroomiTextField(value: String,
         isError = errorMessage != null,
         singleLine = true
     )
-    errorMessage?.let {
-        Text(
-            text = it,
-            color = Error,
-            modifier = Modifier.padding(
-            bottom = 8.dp
-        )
-        )
-    }
-
 }

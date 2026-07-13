@@ -9,6 +9,7 @@ import com.dev.groomi.shared.ui.components.auth.AuthFooter
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
+import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
 @Composable
@@ -25,7 +26,7 @@ fun RegisterScreen(
     snackbarHostState: SnackbarHostState
 ){
     GroomiScreen(snackbarHostState = snackbarHostState) {
-        GroomiLogoMain()
+        GroomiLogoSecondary()
         GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError, supportingText = "Full first name.")
         GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError, supportingText = "Full last name." )
         GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError, supportingText = "Must be a valid email address." )
