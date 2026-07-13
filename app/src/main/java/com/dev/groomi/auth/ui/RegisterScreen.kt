@@ -27,12 +27,12 @@ fun RegisterScreen(
 ){
     GroomiScreen(snackbarHostState = snackbarHostState) {
         GroomiLogoSecondary()
-        GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError, supportingText = "Full first name.")
-        GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError, supportingText = "Full last name." )
-        GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError, supportingText = "Must be a valid email address." )
-        GroomiTextField(value = uiState.phoneNumber, onValueChange = onPhoneNumberChange, label = "Phone", errorMessage = uiState.phoneNumberError, supportingText = "Must be a valid phone number.")
-        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Password", errorMessage = uiState.passwordError, supportingText = "Must have: 6 Characters, 1 uppercase letter, 1 special character.")
-        GroomiTextField(value = uiState.confirmPassword, onValueChange = onConfirmPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Confirm Password", supportingText = "Confirm your chosen password." )
+        GroomiTextField(value = uiState.firstName, onValueChange = onFirstNameChange, label = "First Name", errorMessage = uiState.firstNameError)
+        GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError )
+        GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
+        GroomiTextField(value = uiState.phoneNumber, onValueChange = onPhoneNumberChange, label = "Phone", errorMessage = uiState.phoneNumberError)
+        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Password")
+        GroomiTextField(value = uiState.confirmPassword, onValueChange = onConfirmPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Confirm Password")
         GroomiButton(onClick=onRegisterClick, text = "Register", isLoading = uiState.isLoading)
         AuthFooter(prompt = "Already have an account?", actionText = "Sign in", onClick = onLoginClick)
     }
