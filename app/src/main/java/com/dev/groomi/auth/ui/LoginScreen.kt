@@ -1,5 +1,6 @@
 package com.dev.groomi.auth.ui
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,8 +19,9 @@ fun LoginScreen(
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
     uiState: AuthenticationUiState,
+    snackbarHostState: SnackbarHostState,
 ) {
-            GroomiScreen{
+            GroomiScreen(snackbarHostState = snackbarHostState){
                 GroomiLogoMain()
                 GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
                 GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label ="Password", errorMessage = uiState.passwordError)
@@ -37,6 +39,7 @@ private fun LoginScreenPreview() {
         onEmailChange = {},
         onPasswordChange = {},
         onLoginClick = {},
+        snackbarHostState = SnackbarHostState(),
         uiState = AuthenticationUiState(),
     )
 

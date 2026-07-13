@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dev.groomi.auth.navigation.LoginRoute
 import com.dev.groomi.auth.navigation.RegisterRoute
+import com.dev.groomi.dashboard.navigation.DashboardRoute
 
 
 @Composable
@@ -18,6 +19,9 @@ fun AppNavigation(){
         }
         composable(Screen.Register.route) {
             RegisterRoute(navController)
+        }
+        composable(Screen.Dashboard.route) {
+            DashboardRoute(navController)
         }
     }
 }

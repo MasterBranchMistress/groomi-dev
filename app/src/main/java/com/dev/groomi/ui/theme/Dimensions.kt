@@ -6,7 +6,7 @@ object Dimensions {
 
     val ButtonHeight = 40.dp
 
-    val TextFieldHeight = 58.dp
+    val TextFieldHeight = 72.dp
 
     val TopBarHeight = 64.dp
 

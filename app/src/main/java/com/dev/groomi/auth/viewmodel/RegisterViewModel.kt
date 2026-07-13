@@ -2,16 +2,17 @@ package com.dev.groomi.auth.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dev.groomi.auth.feedback.RegisterErrorMessages
+import com.dev.groomi.auth.repository.register.FakeRegisterRepository
+import com.dev.groomi.auth.repository.register.RegisterResult
 import com.dev.groomi.auth.validation.fields.RegistrationFields
 import com.dev.groomi.auth.validation.validators.RegistrationValidator
 import com.dev.groomi.shared.validation.ValidationResult
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
 
 data class RegisterUiState(val firstName: String="",
                            val lastName: String="",
@@ -31,6 +32,8 @@ class RegisterViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
+
+    private val repository = FakeRegisterRepository()
 
     fun onFirstNameChange(firstName: String) {
         _uiState.update {
@@ -71,9 +74,9 @@ class RegisterViewModel : ViewModel() {
                 it.copy(confirmPassword = confirmPassword)
             }
         }
-             fun onRegisterClick() {
+             fun onRegisterClick(onSuccess: () -> Unit, onFailure: (RegisterErrorMessages) -> Unit) {
                 // TODO: Register to Repository
-                val result = RegistrationValidator.validateRegistration(
+                val validationResult = RegistrationValidator.validateRegistration(
                     firstName = uiState.value.firstName,
                     lastName = uiState.value.lastName,
                     email = uiState.value.email,
@@ -81,16 +84,25 @@ class RegisterViewModel : ViewModel() {
                     password = uiState.value.password,
                     confirmPassword = uiState.value.confirmPassword
                     )
-                when(result){
+                when(validationResult){
                     is ValidationResult.Error<RegistrationFields> -> {
-                        updateValidationError(result)
+                        updateValidationError(validationResult)
                     }
                     ValidationResult.Success -> {
                         viewModelScope.launch {
                             setLoadingState(true)
                             // TODO: Repository.register(...)
-                            delay(2000.milliseconds) // Fake API call
+                            val registerResult = repository.register(firstName = uiState.value.firstName,
+                                lastName = uiState.value.lastName,
+                                email = uiState.value.email,
+                                phoneNumber = uiState.value.phoneNumber,
+                                password = uiState.value.password,
+                                confirmPassword = uiState.value.confirmPassword)
                             setLoadingState(false)
+                            when(registerResult){
+                                is RegisterResult.Success -> onSuccess()
+                                is RegisterResult.Failure -> onFailure(RegisterErrorMessages.UnknownError)
+                            }
                         }
                     }
                 }
