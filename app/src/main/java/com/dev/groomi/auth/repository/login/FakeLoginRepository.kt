@@ -5,10 +5,10 @@ import kotlin.time.Duration.Companion.milliseconds
 
 sealed interface LoginResult{
     data object Success: LoginResult
-    data object Failure: LoginResult
+    data class Failure(val message: String): LoginResult
 }
 
-class FakeAuthenticationRepository : LoginRepositoryInterface {
+class FakeLoginRepository : LoginRepositoryInterface {
 
     override suspend fun login(
         email: String,

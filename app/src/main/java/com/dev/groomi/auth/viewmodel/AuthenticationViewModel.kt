@@ -2,11 +2,14 @@ package com.dev.groomi.auth.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dev.groomi.auth.repository.login.FakeAuthenticationRepository
+import com.dev.groomi.auth.api.AuthenticationApi
+import com.dev.groomi.auth.feedback.LoginErrorMessages
+import com.dev.groomi.auth.repository.login.FakeLoginRepository
+import com.dev.groomi.auth.repository.login.LoginRepository
 import com.dev.groomi.auth.repository.login.LoginResult
 import com.dev.groomi.auth.validation.fields.AuthenticationFields
 import com.dev.groomi.auth.validation.validators.AuthenticationValidator
-import com.dev.groomi.auth.feedback.LoginErrorMessages
+import com.dev.groomi.shared.integration.RetrofitClient
 import com.dev.groomi.shared.validation.ValidationResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +30,12 @@ class AuthenticationViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(AuthenticationUiState())
     val uiState: StateFlow<AuthenticationUiState> = _uiState.asStateFlow()
-    private val repository = FakeAuthenticationRepository()
+
+    val api = RetrofitClient.create(AuthenticationApi::class.java)
+
+    //TODO: debug. urls might be off
+//    private val repository = LoginRepository(api)
+    private val repository = FakeLoginRepository()
 
     fun onEmailChange(email: String) {
         _uiState.update {
