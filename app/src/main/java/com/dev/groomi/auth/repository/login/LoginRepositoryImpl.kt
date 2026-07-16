@@ -19,10 +19,11 @@ class LoginRepositoryImpl(private val api: AuthenticationApi): LoginRepositoryIn
 
             LoginResult.Success
 
-        } catch (e: Exception) {
+        } catch (error: Exception) {
 
+            error.message?.let { Log.d("LOGIN", it) }
             LoginResult.Failure(
-                e.message ?: "Login failed"
+                error.message ?: "Login failed"
             )
         }
     }
