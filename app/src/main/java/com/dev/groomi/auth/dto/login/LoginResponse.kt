@@ -1,6 +1,9 @@
 package com.dev.groomi.auth.dto.login
 
+import java.util.UUID
+
 data class LoginResponse(
-    val success: Boolean,
-    val message: String
+    val userId: UUID,
+    val email: String,
+    val message: String,
 )

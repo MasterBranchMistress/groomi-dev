@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.feedback.LoginErrorMessages
-import com.dev.groomi.auth.repository.login.FakeLoginRepository
-import com.dev.groomi.auth.repository.login.LoginRepository
+import com.dev.groomi.auth.repository.login.LoginRepositoryImpl
 import com.dev.groomi.auth.repository.login.LoginResult
 import com.dev.groomi.auth.validation.fields.AuthenticationFields
 import com.dev.groomi.auth.validation.validators.AuthenticationValidator
-import com.dev.groomi.shared.integration.RetrofitClient
+import com.dev.groomi.shared.network.RetrofitClient
 import com.dev.groomi.shared.validation.ValidationResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,8 +33,8 @@ class AuthenticationViewModel : ViewModel() {
     val api = RetrofitClient.create(AuthenticationApi::class.java)
 
     //TODO: debug. urls might be off
-//    private val repository = LoginRepository(api)
-    private val repository = FakeLoginRepository()
+    private val repository = LoginRepositoryImpl(api)
+//    private val repository = FakeLoginRepository()
 
     fun onEmailChange(email: String) {
         _uiState.update {
@@ -67,7 +66,7 @@ class AuthenticationViewModel : ViewModel() {
                     setLoadingState(false)
                     when(loginResult){
                         is LoginResult.Success -> onSuccess()
-                        is LoginResult.Failure -> onFailure(LoginErrorMessages.NetworkFailure)
+                        is LoginResult.Failure -> onFailure(LoginErrorMessages.Unknown)
                     }
                 }
             }
