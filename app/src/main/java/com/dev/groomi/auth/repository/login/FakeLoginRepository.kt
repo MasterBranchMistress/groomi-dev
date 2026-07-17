@@ -16,7 +16,5 @@ class FakeLoginRepository : LoginRepositoryInterface {
     ): LoginResult {
         delay(2000.milliseconds)
      return LoginResult.Success
-        //TODO implement for future real repo
-        // return LoginResult.Failure
     }
 }

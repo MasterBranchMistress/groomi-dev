@@ -6,18 +6,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.dev.groomi.auth.ui.LoginScreen
-import com.dev.groomi.auth.viewmodel.AuthenticationViewModel
+import com.dev.groomi.auth.viewmodel.LoginViewModel
 import com.dev.groomi.shared.navigation.Screen
 import kotlinx.coroutines.launch
+
 
 @Composable
 fun LoginRoute(
     navController: NavController
 ) {
-    val viewModel: AuthenticationViewModel = viewModel()
+    val viewModel: LoginViewModel = hiltViewModel()
     val authenticationUiState by viewModel.uiState.collectAsState()
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
