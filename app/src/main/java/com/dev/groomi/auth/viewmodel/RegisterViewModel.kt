@@ -3,16 +3,18 @@ package com.dev.groomi.auth.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.groomi.auth.feedback.RegisterErrorMessages
-import com.dev.groomi.auth.repository.register.FakeRegisterRepository
+import com.dev.groomi.auth.repository.register.RegisterRepositoryInterface
 import com.dev.groomi.auth.repository.register.RegisterResult
 import com.dev.groomi.auth.validation.fields.RegistrationFields
 import com.dev.groomi.auth.validation.validators.RegistrationValidator
 import com.dev.groomi.shared.validation.ValidationResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class RegisterUiState(val firstName: String="",
                            val lastName: String="",
@@ -28,13 +30,10 @@ data class RegisterUiState(val firstName: String="",
                            val isLoading: Boolean=false,
     )
 
-class RegisterViewModel : ViewModel() {
-
+@HiltViewModel
+class RegisterViewModel @Inject constructor(private val repository: RegisterRepositoryInterface): ViewModel() {
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
-
-    private val repository = FakeRegisterRepository()
-
     fun onFirstNameChange(firstName: String) {
         _uiState.update {
             it.copy(firstName = firstName,
@@ -42,7 +41,6 @@ class RegisterViewModel : ViewModel() {
             )
         }
     }
-
     fun onLastNameChange(lastName: String) {
         _uiState.update {
             it.copy(lastName = lastName,
@@ -61,21 +59,18 @@ class RegisterViewModel : ViewModel() {
                 phoneNumberError = null)
         }
     }
-
     fun onPasswordChange(password: String) {
         _uiState.update {
             it.copy(password = password,
                 passwordError = null)
         }
     }
-
         fun onConfirmPasswordChange(confirmPassword: String) {
             _uiState.update {
                 it.copy(confirmPassword = confirmPassword)
             }
         }
-             fun onRegisterClick(onSuccess: () -> Unit, onFailure: (RegisterErrorMessages) -> Unit) {
-                // TODO: Register to Repository
+             fun onRegisterClick(onSuccess: () -> Unit, onFailure: (String) -> Unit) {
                 val validationResult = RegistrationValidator.validateRegistration(
                     firstName = uiState.value.firstName,
                     lastName = uiState.value.lastName,
@@ -91,7 +86,6 @@ class RegisterViewModel : ViewModel() {
                     ValidationResult.Success -> {
                         viewModelScope.launch {
                             setLoadingState(true)
-                            // TODO: Repository.register(...)
                             val registerResult = repository.register(firstName = uiState.value.firstName,
                                 lastName = uiState.value.lastName,
                                 email = uiState.value.email,
@@ -101,7 +95,7 @@ class RegisterViewModel : ViewModel() {
                             setLoadingState(false)
                             when(registerResult){
                                 is RegisterResult.Success -> onSuccess()
-                                is RegisterResult.Failure -> onFailure(RegisterErrorMessages.UnknownError)
+                                is RegisterResult.Failure -> onFailure(registerResult.message)
                             }
                         }
                     }

@@ -2,14 +2,11 @@ package com.dev.groomi.auth.repository.logout
 
 sealed interface LogoutResult{
     data object Success: LogoutResult
-    data object Failure: LogoutResult
+    data class Failure(val message: String): LogoutResult
 }
 
 class FakeLogoutRepository : LogoutRepositoryInterface {
-    override suspend fun logout(
-        userId: String,
-        session: Boolean
-    ): LogoutResult {
+    override suspend fun logout(): LogoutResult {
         return LogoutResult.Success
         //TODO: implement logout failures
     }

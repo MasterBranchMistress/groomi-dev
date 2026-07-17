@@ -21,6 +21,6 @@ interface AuthenticationApi {
     ): ApiResponse<RegisterResponse>
 
     @POST("auth/logout")
-    suspend fun  logout() : ApiResponse<LogoutResponse>
+    suspend fun logout(): ApiResponse<LogoutResponse>
 }
 

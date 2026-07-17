@@ -11,4 +11,14 @@ sealed class LoginErrorMessages(
 
     data object Unknown :
         LoginErrorMessages("Something went wrong.")
+
+    companion object {
+        fun fromType(errorType: String): LoginErrorMessages {
+            return when(errorType) {
+                "INVALID_CREDENTIALS" -> InvalidCredentials
+                "NETWORK_FAILURE" -> NetworkFailure
+                else -> Unknown
+            }
+        }
+    }
 }

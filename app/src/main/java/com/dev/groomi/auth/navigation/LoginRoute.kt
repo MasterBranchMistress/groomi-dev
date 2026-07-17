@@ -31,7 +31,7 @@ fun LoginRoute(
             viewModel.onLoginClick(onSuccess = {navController.navigate(Screen.Dashboard.route)}, onFailure = { error ->
                 scope.launch {
                     snackbarHostState.showSnackbar(
-                        message = error.message
+                        message = error
                     )
                 }
             })

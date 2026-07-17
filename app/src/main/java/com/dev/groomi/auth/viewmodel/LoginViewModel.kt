@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
                 passwordError = null)
         }
     }
-     fun onLoginClick(onSuccess: () -> Unit, onFailure:(LoginErrorMessages) -> Unit) {
+     fun onLoginClick(onSuccess: () -> Unit, onFailure:(String) -> Unit) {
         val result = AuthenticationValidator.validateLogin(email = uiState.value.email,
             password = uiState.value.password)
         when(result) {
@@ -56,7 +56,7 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
                     setLoadingState(false)
                     when(loginResult){
                         is LoginResult.Success -> onSuccess()
-                        is LoginResult.Failure -> onFailure(LoginErrorMessages.Unknown)
+                        is LoginResult.Failure -> onFailure(loginResult.message)
                     }
                 }
             }

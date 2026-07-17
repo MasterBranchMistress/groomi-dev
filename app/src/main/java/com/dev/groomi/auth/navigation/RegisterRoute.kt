@@ -6,7 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.dev.groomi.auth.ui.RegisterScreen
 import com.dev.groomi.auth.viewmodel.RegisterViewModel
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterRoute(navController: NavController) {
-    val viewModel: RegisterViewModel = viewModel()
+    val viewModel: RegisterViewModel = hiltViewModel()
     val registerUiState by viewModel.uiState.collectAsState()
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -33,7 +33,7 @@ fun RegisterRoute(navController: NavController) {
                 onFailure = { error ->
                     scope.launch {
                         snackbarHostState.showSnackbar(
-                            message = error.message
+                            message = error
                         )
                     }
                 }

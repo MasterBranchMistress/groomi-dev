@@ -5,7 +5,7 @@ import kotlin.time.Duration.Companion.milliseconds
 
 sealed interface RegisterResult{
     data object Success: RegisterResult
-    data object  Failure: RegisterResult
+    data class  Failure(val message: String): RegisterResult
 }
 
 class FakeRegisterRepository : RegisterRepositoryInterface {

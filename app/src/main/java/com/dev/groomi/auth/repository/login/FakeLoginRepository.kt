@@ -4,6 +4,7 @@ import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 
 sealed interface LoginResult{
+
     data object Success: LoginResult
     data class Failure(val message: String): LoginResult
 }

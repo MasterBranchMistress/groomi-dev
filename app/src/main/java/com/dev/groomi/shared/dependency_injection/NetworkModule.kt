@@ -3,6 +3,8 @@ package com.dev.groomi.di
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.repository.login.LoginRepository
 import com.dev.groomi.auth.repository.login.LoginRepositoryInterface
+import com.dev.groomi.auth.repository.register.RegisterRepository
+import com.dev.groomi.auth.repository.register.RegisterRepositoryInterface
 import com.dev.groomi.shared.network.NetworkConstants
 import dagger.Binds
 import dagger.Module
@@ -40,5 +42,9 @@ object NetworkModule {
         abstract fun bindLoginRepository(
             repository: LoginRepository
         ): LoginRepositoryInterface
+        @Binds
+        abstract fun bindRegisterRepository(
+            repository: RegisterRepository
+        ): RegisterRepositoryInterface
     }
 }
