@@ -5,5 +5,5 @@ import java.util.UUID
 data class LoginResponse(
     val userId: UUID,
     val email: String,
-    val message: String,
+    val token: String
 )
