@@ -1,6 +1,7 @@
 package com.dev.groomi.auth.repository.login
 
 import android.util.Log
+import androidx.datastore.core.IOException
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.dto.login.LoginRequest
 import com.dev.groomi.shared.local.auth.TokenManager
@@ -21,10 +22,11 @@ class LoginRepository @Inject constructor (private val api: AuthenticationApi, p
             LoginResult.Success
         } catch (error: HttpException) {
             val errorResponse = parseErrorMessage(error)
-            Log.d("LOGIN_ERROR", errorResponse)
             LoginResult.Failure(
                 errorResponse
             )
+        } catch (error: IOException){
+            LoginResult.Failure("Network Unavailable. Check your internet connection and try again.")
         }
     }
 }
