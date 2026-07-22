@@ -15,6 +15,7 @@ class FakeLoginRepository : LoginRepositoryInterface {
         email: String,
         password: String
     ): LoginResult {
+        delay(5000.milliseconds)
      return LoginResult.Success
     }
 }

@@ -19,7 +19,7 @@ import javax.inject.Inject
 data class AuthenticationUiState(
     val email: String = "",
     val password: String = "",
-    val isLoading: Boolean = false,
+    var isLoading: Boolean = false,
     val emailError: String? = null,
     val passwordError: String? = null,
     val loginError: LoginErrorMessages? = null
