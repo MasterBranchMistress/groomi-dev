@@ -25,7 +25,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun initialStateIsEmpty() {
+    fun initialLoginStateIsEmpty() {
         val viewModel = loginSetup.viewModel
         val state = viewModel.uiState.value
         assertEquals("", state.email)

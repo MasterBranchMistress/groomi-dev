@@ -13,12 +13,14 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.dev.groomi.shared.ui.components.background.GroomiScreenBackground
+import com.dev.groomi.shared.ui.components.background.GroomiVideoBackground
 import com.dev.groomi.shared.ui.components.feedback.GroomiSnackbarHost
 import com.dev.groomi.ui.theme.Spacing
 
 @Composable
 fun GroomiScreen(
-    snackbarHostState: SnackbarHostState?=null,
+    snackbarHostState: SnackbarHostState? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Scaffold(
@@ -26,19 +28,17 @@ fun GroomiScreen(
             GroomiSnackbarHost(hostState = snackbarHostState)
         }
     ) { paddingValues ->
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val scrollState = rememberScrollState()
-
+            GroomiScreenBackground()
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(Spacing.lg)
-                    .verticalScroll(scrollState),
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 content = content

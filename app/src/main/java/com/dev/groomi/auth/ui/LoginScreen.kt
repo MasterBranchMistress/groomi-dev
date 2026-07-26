@@ -2,15 +2,15 @@ package com.dev.groomi.auth.ui
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.dev.groomi.auth.viewmodel.AuthenticationUiState
 import com.dev.groomi.shared.ui.components.auth.AuthFooter
+import com.dev.groomi.shared.ui.components.background.GroomiVideoBackground
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.buttons.GroomiTextButton
+import com.dev.groomi.shared.ui.components.inputs.text.GroomiInputFieldType
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
-import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
 @Composable
@@ -24,8 +24,8 @@ fun LoginScreen(
 ) {
             GroomiScreen(snackbarHostState = snackbarHostState){
                 GroomiLogoMain()
-                GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
-                GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label ="Password", errorMessage = uiState.passwordError)
+                GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError)
+                GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, label ="Password", errorMessage = uiState.passwordError, type = GroomiInputFieldType.PASSWORD)
                 GroomiButton(onClick = onLoginClick, text = "Login", isLoading = uiState.isLoading)
                 GroomiTextButton(buttonText = "Forgot Password?", temporaryText = "Forgot Password coming soon!", onClick = {println(message = "Forgot Password Clicked.")} )
                 AuthFooter(prompt = "Don't have an Account?", actionText = "Sign Up", onClick = onRegisterClick)

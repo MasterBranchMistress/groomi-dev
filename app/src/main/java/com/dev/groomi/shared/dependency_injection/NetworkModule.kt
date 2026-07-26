@@ -33,7 +33,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun AuthInterceptor(
+    fun provideAuthInterceptor(
         tokenManager: TokenManager
     ): AuthInterceptor = AuthInterceptor(tokenManager
     )

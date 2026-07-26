@@ -1,26 +1,28 @@
 package com.dev.groomi.shared.ui.components.inputs.text
 
-import android.R.attr.text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation.Companion.None
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
 import com.dev.groomi.ui.theme.Amethyst
 import com.dev.groomi.ui.theme.CarbonBlack
 import com.dev.groomi.ui.theme.Dimensions
 import com.dev.groomi.ui.theme.Error
-import com.dev.groomi.ui.theme.LavenderGrey
 import com.dev.groomi.ui.theme.RoyalOrchid
 import com.dev.groomi.ui.theme.Spacing
 
@@ -29,8 +31,11 @@ fun GroomiTextField(value: String,
                     onValueChange: (String) -> Unit,
                     label: String,
                     modifier: Modifier = Modifier,
-                    visualTransformation: VisualTransformation = None,
+                    type: GroomiInputFieldType = GroomiInputFieldType.DEFAULT,
                     errorMessage: String?=null){
+    var passwordVisible by remember {
+        mutableStateOf(false)
+    }
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -43,16 +48,46 @@ fun GroomiTextField(value: String,
                 )
             }
         },
+        visualTransformation =
+            if (type == GroomiInputFieldType.PASSWORD && !passwordVisible)
+                PasswordVisualTransformation()
+            else
+                VisualTransformation.None,
+        trailingIcon =
+            if (type == GroomiInputFieldType.PASSWORD) {
+                {
+                    IconButton(
+                        onClick = {
+                            passwordVisible = !passwordVisible
+                        }
+                    ) {
+                        Icon(
+                            imageVector =
+                                if (passwordVisible)
+                                    Icons.Default.Visibility
+                                else
+                                    Icons.Default.VisibilityOff,
+                            contentDescription =
+                                if (passwordVisible)
+                                    "Hide password"
+                                else
+                                    "Show password"
+                        )
+                    }
+                }
+            } else {
+                null
+            },
         colors = OutlinedTextFieldDefaults.colors(
-            unfocusedLabelColor = LavenderGrey,
+            unfocusedLabelColor = CarbonBlack,
             focusedLabelColor = RoyalOrchid,
-            unfocusedBorderColor = LavenderGrey,
+            unfocusedBorderColor = CarbonBlack,
             focusedBorderColor = RoyalOrchid,
             cursorColor = CarbonBlack,
-            unfocusedSupportingTextColor = LavenderGrey,
+            unfocusedSupportingTextColor = CarbonBlack,
             focusedSupportingTextColor = Amethyst
         ),
-        visualTransformation = visualTransformation,
+        
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = Spacing.sm)

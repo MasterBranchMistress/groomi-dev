@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.dev.groomi.auth.viewmodel.RegisterUiState
 import com.dev.groomi.shared.ui.components.auth.AuthFooter
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
+import com.dev.groomi.shared.ui.components.inputs.text.GroomiInputFieldType
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
@@ -31,8 +32,8 @@ fun RegisterScreen(
         GroomiTextField(value = uiState.lastName, onValueChange = onLastNameChange, label = "Last Name", errorMessage = uiState.lastNameError )
         GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError )
         GroomiTextField(value = uiState.phoneNumber, onValueChange = onPhoneNumberChange, label = "Phone", errorMessage = uiState.phoneNumberError)
-        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Password")
-        GroomiTextField(value = uiState.confirmPassword, onValueChange = onConfirmPasswordChange, visualTransformation = PasswordVisualTransformation(), label = "Confirm Password")
+        GroomiTextField(value = uiState.password, onValueChange = onPasswordChange, label = "Password", errorMessage = uiState.passwordError, type = GroomiInputFieldType.PASSWORD)
+        GroomiTextField(value = uiState.confirmPassword, onValueChange = onConfirmPasswordChange, label = "Confirm Password", errorMessage = uiState.passwordError, type = GroomiInputFieldType.PASSWORD)
         GroomiButton(onClick=onRegisterClick, text = "Register", isLoading = uiState.isLoading)
         AuthFooter(prompt = "Already have an account?", actionText = "Sign in", onClick = onLoginClick)
     }
