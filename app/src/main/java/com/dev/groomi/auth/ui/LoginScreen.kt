@@ -19,6 +19,7 @@ fun LoginScreen(
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
+    onForgotPasswordClick: () -> Unit,
     uiState: AuthenticationUiState,
     snackbarHostState: SnackbarHostState,
 ) {
@@ -27,7 +28,7 @@ fun LoginScreen(
                 GroomiTextField(value = uiState.email, onValueChange = onEmailChange, label = "Email", errorMessage = uiState.emailError)
                 GroomiTextField(value=uiState.password, onValueChange = onPasswordChange, label ="Password", errorMessage = uiState.passwordError, type = GroomiInputFieldType.PASSWORD)
                 GroomiButton(onClick = onLoginClick, text = "Login", isLoading = uiState.isLoading)
-                GroomiTextButton(buttonText = "Forgot Password?", temporaryText = "Forgot Password coming soon!", onClick = {println(message = "Forgot Password Clicked.")} )
+                GroomiTextButton(buttonText = "Forgot Password?", temporaryText = "Forgot Password coming soon!", onClick = onForgotPasswordClick)
                 AuthFooter(prompt = "Don't have an Account?", actionText = "Sign Up", onClick = onRegisterClick)
             }
         }
@@ -42,6 +43,7 @@ private fun LoginScreenPreview() {
         onLoginClick = {},
         snackbarHostState = SnackbarHostState(),
         uiState = AuthenticationUiState(),
+        onForgotPasswordClick = {}
     )
 
 }

@@ -2,14 +2,12 @@ package com.dev.groomi.auth.ui
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.dev.groomi.auth.viewmodel.RegisterUiState
 import com.dev.groomi.shared.ui.components.auth.AuthFooter
 import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiInputFieldType
 import com.dev.groomi.shared.ui.components.inputs.text.GroomiTextField
-import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoSecondary
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
 

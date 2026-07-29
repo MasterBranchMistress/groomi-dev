@@ -1,5 +1,7 @@
 package com.dev.groomi.shared.dependency_injection
 
+import com.dev.groomi.auth.repository.forgotPassword.ForgotPasswordRepository
+import com.dev.groomi.auth.repository.forgotPassword.ForgotPasswordRepositoryInterface
 import com.dev.groomi.auth.repository.login.LoginRepository
 import com.dev.groomi.auth.repository.login.LoginRepositoryInterface
 import com.dev.groomi.auth.repository.register.RegisterRepository
@@ -21,4 +23,9 @@ abstract class RepositoryModule {
     abstract fun bindRegisterRepository(
         repository: RegisterRepository
     ): RegisterRepositoryInterface
+
+    @Binds
+    abstract fun bindForgotPasswordRepository(
+        repository: ForgotPasswordRepository
+    ): ForgotPasswordRepositoryInterface
 }

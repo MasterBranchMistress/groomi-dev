@@ -38,6 +38,9 @@ fun LoginRoute(
         },
         onRegisterClick = {
             navController.navigate(Screen.Register.route)
+        },
+        onForgotPasswordClick = {
+            navController.navigate(Screen.ForgotPassword.route)
         }
     )
 }
