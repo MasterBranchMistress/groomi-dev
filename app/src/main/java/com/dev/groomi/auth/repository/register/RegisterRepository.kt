@@ -3,7 +3,6 @@ package com.dev.groomi.auth.repository.register
 import androidx.datastore.core.IOException
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.dto.register.RegisterRequest
-import com.dev.groomi.auth.repository.login.LoginResult
 import com.dev.groomi.shared.utils.parseErrorMessage
 import retrofit2.HttpException
 import javax.inject.Inject
