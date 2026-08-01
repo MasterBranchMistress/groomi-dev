@@ -2,8 +2,8 @@ package com.dev.groomi.auth.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dev.groomi.auth.repository.forgotPassword.ForgotPasswordRepositoryInterface
-import com.dev.groomi.auth.repository.forgotPassword.ForgotPasswordResult
+import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordRepositoryInterface
+import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

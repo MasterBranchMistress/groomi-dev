@@ -7,6 +7,9 @@ import com.dev.groomi.auth.dto.login.LoginResponse
 import com.dev.groomi.auth.dto.logout.LogoutResponse
 import com.dev.groomi.auth.dto.register.RegisterRequest
 import com.dev.groomi.auth.dto.register.RegisterResponse
+import com.dev.groomi.auth.dto.resend_reset_link.ResendResetLinkRequest
+import com.dev.groomi.auth.dto.resend_reset_link.ResendResetLinkResponse
+import com.dev.groomi.auth.repository.pending_reset_link.ResendResetLinkResult
 import com.dev.groomi.shared.network.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -29,5 +32,10 @@ interface AuthenticationApi {
     suspend fun submitEmail(
         @Body request: ForgotPasswordRequest
     ): ApiResponse<ForgotPasswordResponse>
+
+    @POST("auth/resend-reset-link")
+    suspend fun resendResetLink(
+        @Body request: ResendResetLinkRequest
+    ): ApiResponse<ResendResetLinkResponse>
 }
 

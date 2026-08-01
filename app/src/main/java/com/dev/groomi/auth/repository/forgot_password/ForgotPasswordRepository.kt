@@ -1,4 +1,4 @@
-package com.dev.groomi.auth.repository.forgotPassword
+package com.dev.groomi.auth.repository.forgot_password
 
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.dto.forgot_password.ForgotPasswordRequest
@@ -11,7 +11,7 @@ class ForgotPasswordRepository @Inject constructor(
         email: String
     ): ForgotPasswordResult {
         return try {
-            val response = api.submitEmail(
+            api.submitEmail(
                 ForgotPasswordRequest(
                     email = email,
                 )

@@ -24,6 +24,9 @@ fun ForgotPasswordRoute(
         onEmailChange = viewModel::onEmailChange,
         snackbarHostState = snackbarHostState,
         onLoginClick = {navController.navigate(Screen.Login.route)},
-        onSendCodeClick = {viewModel.onSendCodeClick({navController.navigate(Screen.Dashboard.route)}, onFailure = {})}
+        onSendCodeClick = {viewModel.onSendCodeClick({navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.set("email", viewModel::onEmailChange)
+            navController.navigate(Screen.PendingResetLink.route)}, onFailure = {navController.navigate(Screen.PendingResetLink.route)})}
     )
 }

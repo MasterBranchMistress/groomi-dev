@@ -8,6 +8,8 @@ sealed class Screen(val route: String) {
 
     object ForgotPassword : Screen("forgot-password")
 
+    object PendingResetLink : Screen("resend-reset-link")
+
     object Dashboard : Screen("dashboard")
 
     object Clients : Screen("clients")

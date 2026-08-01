@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dev.groomi.auth.navigation.ForgotPasswordRoute
 import com.dev.groomi.auth.navigation.LoginRoute
+import com.dev.groomi.auth.navigation.PendingResetLinkRoute
 import com.dev.groomi.auth.navigation.RegisterRoute
 import com.dev.groomi.dashboard.navigation.DashboardRoute
 
@@ -23,6 +24,9 @@ fun AppNavigation(){
         }
         composable(Screen.ForgotPassword.route) {
             ForgotPasswordRoute(navController)
+        }
+        composable(Screen.PendingResetLink.route) {
+            PendingResetLinkRoute(navController)
         }
         composable(Screen.Dashboard.route) {
             DashboardRoute(navController)

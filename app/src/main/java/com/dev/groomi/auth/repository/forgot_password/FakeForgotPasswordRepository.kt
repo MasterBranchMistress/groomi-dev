@@ -1,4 +1,4 @@
-package com.dev.groomi.auth.repository.forgotPassword
+package com.dev.groomi.auth.repository.forgot_password
 
 sealed interface ForgotPasswordResult{
     data object Success: ForgotPasswordResult
