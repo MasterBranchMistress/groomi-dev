@@ -1,4 +1,4 @@
-package com.dev.groomi.auth.navigation
+package com.dev.groomi.auth.navigation.auth
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable

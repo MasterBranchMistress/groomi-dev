@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.dev.groomi.auth.navigation.ForgotPasswordRoute
-import com.dev.groomi.auth.navigation.LoginRoute
-import com.dev.groomi.auth.navigation.PendingResetLinkRoute
-import com.dev.groomi.auth.navigation.RegisterRoute
+import com.dev.groomi.auth.navigation.auth.ForgotPasswordRoute
+import com.dev.groomi.auth.navigation.auth.LoginRoute
+import com.dev.groomi.auth.navigation.auth.PendingResetLinkRoute
+import com.dev.groomi.auth.navigation.auth.RegisterRoute
 import com.dev.groomi.dashboard.navigation.DashboardRoute
 
 
