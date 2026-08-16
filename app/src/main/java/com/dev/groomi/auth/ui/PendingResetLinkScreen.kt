@@ -23,7 +23,6 @@ import com.dev.groomi.shared.ui.layouts.GroomiScreen
 fun PendingResetLinkScreen(
     uiState: PendingResetLinkUIState,
     snackbarHostState: SnackbarHostState,
-    onResendLink: () -> Unit,
     onLoginClick: () -> Unit
 ) {
     GroomiScreen(snackbarHostState = snackbarHostState) {
@@ -49,11 +48,6 @@ fun PendingResetLinkScreen(
                 .fillMaxWidth()
                 .padding(vertical = 24.dp)
         )
-        GroomiButton(
-            onClick = onResendLink,
-            text = "Resend Link",
-            isLoading = uiState.isLoading
-        )
         GroomiTextButton(
             buttonText = "Back to Login",
             onClick = onLoginClick
@@ -63,5 +57,5 @@ fun PendingResetLinkScreen(
 @Preview(showBackground = true)
 @Composable
 private fun PendingResetLinkScreenPreview() {
-    PendingResetLinkScreen(snackbarHostState = SnackbarHostState(), onResendLink = {}, uiState = PendingResetLinkUIState()) { }
+    PendingResetLinkScreen(snackbarHostState = SnackbarHostState(), uiState = PendingResetLinkUIState()) { }
 }

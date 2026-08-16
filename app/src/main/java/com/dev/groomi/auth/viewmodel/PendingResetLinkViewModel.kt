@@ -20,28 +20,4 @@ data class PendingResetLinkUIState(
 class PendingResetLinkViewModel @Inject constructor(private val repository: PendingResetLinkRepositoryInterface): ViewModel(){
     private val _uiState = MutableStateFlow(PendingResetLinkUIState())
     val uiState: StateFlow<PendingResetLinkUIState> = _uiState.asStateFlow()
-    private var email: String = ""
-
-    fun initialize(email: String) {
-        this.email = email
-    }
-    fun onResendLinkClick(
-        onSuccess: () -> Unit,
-        onFailure:() -> Unit
-    ) {
-        viewModelScope.launch {
-            setLoadingState(true)
-            val pendingResetLinkResult =  repository.resendResetLink(email)
-            setLoadingState(false)
-            when(pendingResetLinkResult){
-                is ResendResetLinkResult.Success -> onSuccess()
-                is ResendResetLinkResult.Failure -> onFailure()
-            }
-        }
-    }
-    private fun setLoadingState(isLoading: Boolean){
-        _uiState.update {
-            it.copy(isLoading=isLoading)
-        }
-    }
 }

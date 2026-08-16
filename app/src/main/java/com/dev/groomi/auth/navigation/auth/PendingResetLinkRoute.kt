@@ -18,11 +18,11 @@ fun PendingResetLinkRoute(
     val viewModel: PendingResetLinkViewModel = hiltViewModel()
     val pendingResetLinkUIState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val goBackToLoginScreen = {navController.navigate(Screen.Login.route)}
 
     PendingResetLinkScreen(
         uiState = pendingResetLinkUIState,
         snackbarHostState = snackbarHostState,
-        onLoginClick = { navController.navigate(Screen.Login.route) },
-        onResendLink = {viewModel.onResendLinkClick(onSuccess = {}, onFailure = {})}
+        onLoginClick = goBackToLoginScreen,
     )
 }
