@@ -2,14 +2,9 @@ package com.dev.groomi.shared.dependency_injection
 
 import android.content.Context
 import com.dev.groomi.auth.api.AuthenticationApi
-import com.dev.groomi.auth.repository.login.LoginRepository
-import com.dev.groomi.auth.repository.login.LoginRepositoryInterface
-import com.dev.groomi.auth.repository.register.RegisterRepository
-import com.dev.groomi.auth.repository.register.RegisterRepositoryInterface
 import com.dev.groomi.shared.local.auth.AuthInterceptor
 import com.dev.groomi.shared.local.auth.TokenManager
 import com.dev.groomi.shared.network.NetworkConstants
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
