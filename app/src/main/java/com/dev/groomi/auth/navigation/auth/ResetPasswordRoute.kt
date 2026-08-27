@@ -15,7 +15,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ResetPasswordRoute(
-    navController: NavController
+    navController: NavController,
+    token: String?
 ){
     val viewModel: ResetPasswordViewModel = hiltViewModel()
     val resetPasswordUiState by viewModel.uiState.collectAsState()

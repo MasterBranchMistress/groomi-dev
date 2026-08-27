@@ -8,7 +8,9 @@ sealed class Screen(val route: String) {
 
     object ForgotPassword : Screen("forgot-password")
 
-    object ResetPassword : Screen("reset-password")
+    object ResetPassword : Screen("reset-password?token={token}")
+
+    object PendingResetLink: Screen("pending-reset-link")
 
     object Dashboard : Screen("dashboard")
 

@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dev.groomi.auth.viewmodel.PendingResetLinkUIState
-import com.dev.groomi.shared.ui.components.buttons.GroomiButton
 import com.dev.groomi.shared.ui.components.buttons.GroomiTextButton
 import com.dev.groomi.shared.ui.components.logos.GroomiLogoMain
 import com.dev.groomi.shared.ui.layouts.GroomiScreen
@@ -21,7 +19,6 @@ import com.dev.groomi.shared.ui.layouts.GroomiScreen
 
 @Composable
 fun PendingResetLinkScreen(
-    uiState: PendingResetLinkUIState,
     snackbarHostState: SnackbarHostState,
     onLoginClick: () -> Unit
 ) {
@@ -57,5 +54,5 @@ fun PendingResetLinkScreen(
 @Preview(showBackground = true)
 @Composable
 private fun PendingResetLinkScreenPreview() {
-    PendingResetLinkScreen(snackbarHostState = SnackbarHostState(), uiState = PendingResetLinkUIState()) { }
+    PendingResetLinkScreen(snackbarHostState = SnackbarHostState()) { }
 }
