@@ -1,12 +1,11 @@
 package com.dev.groomi.auth.viewmodel
 
-import com.dev.groomi.auth.validation.validators.ResetPasswordValidator
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dev.groomi.auth.repository.reset_password.ResetPasswordRepositoryInterface
-import com.dev.groomi.auth.repository.reset_password.ResetPasswordResult
-import com.dev.groomi.auth.validation.fields.AuthenticationFields
+import com.dev.groomi.auth.repository.change_password.ChangePasswordRepository
+import com.dev.groomi.auth.repository.change_password.ChangePasswordResult
 import com.dev.groomi.auth.validation.fields.ResetPasswordFields
+import com.dev.groomi.auth.validation.validators.ResetPasswordValidator
 import com.dev.groomi.shared.validation.ValidationResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,32 +15,47 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class ResetPasswordUiState (
+data class ResetPasswordUiState(
     val password: String = "",
     val confirmPassword: String = "",
-    val passwordError: String? =  null,
+    val passwordError: String? = null,
     val confirmPasswordError: String? = null,
     var isLoading: Boolean = false,
 )
 
 @HiltViewModel
-class ResetPasswordViewModel @Inject constructor(private val repository: ResetPasswordRepositoryInterface): ViewModel(){
+class ResetPasswordViewModel @Inject constructor(
+    private val repository: ChangePasswordRepository
+) : ViewModel() {
+
     private val _uiState = MutableStateFlow(ResetPasswordUiState())
     val uiState: StateFlow<ResetPasswordUiState> = _uiState.asStateFlow()
+
+    private var token: String? = null
+
+    fun setToken(token: String?) {
+        this.token = token
+    }
+
     fun onPasswordChange(password: String) {
         _uiState.update {
-            it.copy(password = password,
-                passwordError = null)
-        }
-    }
-    fun onConfirmPasswordChange(confirmPassword: String) {
-        _uiState.update {
-            it.copy(confirmPassword = confirmPassword,
-                confirmPasswordError = null)
+            it.copy(
+                password = password,
+                passwordError = null
+            )
         }
     }
 
-    fun onResetPasswordClick(
+    fun onConfirmPasswordChange(confirmPassword: String) {
+        _uiState.update {
+            it.copy(
+                confirmPassword = confirmPassword,
+                confirmPasswordError = null
+            )
+        }
+    }
+
+    fun onChangePasswordClick(
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -57,19 +71,20 @@ class ResetPasswordViewModel @Inject constructor(private val repository: ResetPa
                 viewModelScope.launch {
                     setLoadingState(true)
 
-                    val resetPasswordResult = repository.resetPassword(
+                    val changePasswordResult = repository.changePassword(
+                        token = token,
                         password = state.password
                     )
 
                     setLoadingState(false)
 
-                    when (resetPasswordResult) {
-                        is ResetPasswordResult.Success -> {
+                    when (changePasswordResult) {
+                        is ChangePasswordResult.Success -> {
                             onSuccess()
                         }
 
-                        is ResetPasswordResult.Failure -> {
-                            onFailure(resetPasswordResult.message)
+                        is ChangePasswordResult.Failure -> {
+                            onFailure(changePasswordResult.message)
                         }
                     }
                 }
@@ -81,7 +96,9 @@ class ResetPasswordViewModel @Inject constructor(private val repository: ResetPa
         }
     }
 
-    private fun updateValidationError(error: ValidationResult.Error<ResetPasswordFields>) {
+    private fun updateValidationError(
+        error: ValidationResult.Error<ResetPasswordFields>
+    ) {
         _uiState.update {
             when (error.field) {
                 ResetPasswordFields.PASSWORD ->
@@ -93,9 +110,9 @@ class ResetPasswordViewModel @Inject constructor(private val repository: ResetPa
         }
     }
 
-    private fun setLoadingState(isLoading: Boolean){
+    private fun setLoadingState(isLoading: Boolean) {
         _uiState.update {
-            it.copy(isLoading=isLoading)
+            it.copy(isLoading = isLoading)
         }
     }
 }

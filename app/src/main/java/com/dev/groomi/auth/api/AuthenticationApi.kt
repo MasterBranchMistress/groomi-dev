@@ -1,5 +1,7 @@
 package com.dev.groomi.auth.api
 
+import com.dev.groomi.auth.dto.change_password.ChangePasswordRequest
+import com.dev.groomi.auth.dto.change_password.ChangePasswordResponse
 import com.dev.groomi.auth.dto.forgot_password.ForgotPasswordRequest
 import com.dev.groomi.auth.dto.forgot_password.ForgotPasswordResponse
 import com.dev.groomi.auth.dto.login.LoginRequest
@@ -11,9 +13,11 @@ import com.dev.groomi.auth.dto.reset_password.ResetPasswordRequest
 import com.dev.groomi.auth.dto.reset_password.ResetPasswordResponse
 import com.dev.groomi.shared.network.ApiResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthenticationApi {
+
     @POST("auth/login")
     suspend fun login(
         @Body request: LoginRequest
@@ -36,5 +40,10 @@ interface AuthenticationApi {
     suspend fun resetPassword(
         @Body request: ResetPasswordRequest
     ): ApiResponse<ResetPasswordResponse>
+
+    @POST("auth/change-password")
+    suspend fun changePassword(
+        @Body request: ChangePasswordRequest
+    ): ApiResponse<ChangePasswordResponse>
 }
 

@@ -2,6 +2,7 @@ package com.dev.groomi.auth.navigation.auth
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -22,6 +23,9 @@ fun ResetPasswordRoute(
     val resetPasswordUiState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    LaunchedEffect(token) {
+        viewModel.setToken(token)
+    }
 
     PasswordResetScreen(
         uiState = resetPasswordUiState,
@@ -30,10 +34,10 @@ fun ResetPasswordRoute(
         snackbarHostState = snackbarHostState,
         onLoginClick = {navController.navigate(Screen.Login.route)},
         onResetPasswordClick = {
-            viewModel.onResetPasswordClick(
+            viewModel.onChangePasswordClick(
                 onSuccess = {
                     scope.launch {
-                        snackbarHostState.showSnackbar("Password reset clicked.")
+                        snackbarHostState.showSnackbar("Password has been reset.")
                     }
                 },
                 onFailure = { message ->

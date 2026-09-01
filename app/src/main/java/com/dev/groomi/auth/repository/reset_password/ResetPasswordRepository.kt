@@ -11,13 +11,15 @@ sealed interface ResetPasswordResult{
 
 class ResetPasswordRepository @Inject constructor(private val api: AuthenticationApi): ResetPasswordRepositoryInterface{
     override suspend fun resetPassword(
+        token: String?,
         password: String,
     ): ResetPasswordResult {
        return try {
-           api.resetPassword(ResetPasswordRequest(password))
+           api.resetPassword(ResetPasswordRequest(password, token))
            ResetPasswordResult.Success
        } catch(e: Exception){
            ResetPasswordResult.Failure(message = e.message.toString())
        }
     }
+
 }
