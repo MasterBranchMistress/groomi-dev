@@ -4,10 +4,10 @@ import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordRepository
 import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordRepositoryInterface
 import com.dev.groomi.auth.repository.login.LoginRepository
 import com.dev.groomi.auth.repository.login.LoginRepositoryInterface
-import com.dev.groomi.auth.repository.reset_password.ResetPasswordRepository
-import com.dev.groomi.auth.repository.reset_password.ResetPasswordRepositoryInterface
 import com.dev.groomi.auth.repository.register.RegisterRepository
 import com.dev.groomi.auth.repository.register.RegisterRepositoryInterface
+import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRepository
+import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRepositoryInterface
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,7 +32,7 @@ abstract class RepositoryModule {
     ): ForgotPasswordRepositoryInterface
 
     @Binds
-    abstract fun resetPasswordRepository(
-        repository: ResetPasswordRepository
-    ): ResetPasswordRepositoryInterface
+    abstract fun verifyPasswordResetRepository(
+        repository: VerifyPasswordResetTokenRepository
+    ): VerifyPasswordResetTokenRepositoryInterface
 }

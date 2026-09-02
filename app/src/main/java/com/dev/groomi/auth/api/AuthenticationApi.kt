@@ -1,5 +1,6 @@
 package com.dev.groomi.auth.api
 
+import androidx.media3.exoplayer.drm.ExoMediaDrm
 import com.dev.groomi.auth.dto.change_password.ChangePasswordRequest
 import com.dev.groomi.auth.dto.change_password.ChangePasswordResponse
 import com.dev.groomi.auth.dto.forgot_password.ForgotPasswordRequest
@@ -9,8 +10,8 @@ import com.dev.groomi.auth.dto.login.LoginResponse
 import com.dev.groomi.auth.dto.logout.LogoutResponse
 import com.dev.groomi.auth.dto.register.RegisterRequest
 import com.dev.groomi.auth.dto.register.RegisterResponse
-import com.dev.groomi.auth.dto.reset_password.ResetPasswordRequest
-import com.dev.groomi.auth.dto.reset_password.ResetPasswordResponse
+import com.dev.groomi.auth.dto.verify_reset_password_token.VerifyResetPasswordTokenRequest
+import com.dev.groomi.auth.dto.verify_reset_password_token.VerifyResetPasswordTokenResponse
 import com.dev.groomi.shared.network.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -36,10 +37,10 @@ interface AuthenticationApi {
         @Body request: ForgotPasswordRequest
     ): ApiResponse<ForgotPasswordResponse>
 
-    @POST("auth/verify-password-reset-link")
-    suspend fun resetPassword(
-        @Body request: ResetPasswordRequest
-    ): ApiResponse<ResetPasswordResponse>
+    @POST("auth/verify-reset-password-token")
+    suspend fun verifyResetPasswordToken(
+        @Body request: VerifyResetPasswordTokenRequest
+    ): ApiResponse<VerifyResetPasswordTokenResponse>
 
     @POST("auth/change-password")
     suspend fun changePassword(
