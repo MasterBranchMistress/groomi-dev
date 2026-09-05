@@ -9,16 +9,21 @@ sealed interface VerifyResetPasswordTokenResult{
     data class Failure(val message: String): VerifyResetPasswordTokenResult
 }
 
-class VerifyPasswordResetTokenRepository @Inject constructor(private val api: AuthenticationApi): VerifyPasswordResetTokenRepositoryInterface {
+class VerifyPasswordResetTokenRepository @Inject constructor(
+    private val api: AuthenticationApi
+) : VerifyPasswordResetTokenRepositoryInterface {
+
     override suspend fun verifyResetPasswordToken(
-        token: String?
+        token: String
     ): VerifyResetPasswordTokenResult {
-       return try {
-           api.verifyResetPasswordToken(VerifyResetPasswordTokenRequest(token))
-           VerifyResetPasswordTokenResult.Success
-       } catch(e: Exception){
-           VerifyResetPasswordTokenResult.Failure(message = e.message.toString())
-       }
+        return try {
+            api.verifyResetPasswordToken(token)
+            VerifyResetPasswordTokenResult.Success
+        } catch (e: Exception) {
+            VerifyResetPasswordTokenResult.Failure(
+                message = e.message.toString()
+            )
+        }
     }
 
 }

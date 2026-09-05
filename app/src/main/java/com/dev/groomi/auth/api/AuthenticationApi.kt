@@ -16,6 +16,7 @@ import com.dev.groomi.shared.network.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface AuthenticationApi {
 
@@ -37,9 +38,9 @@ interface AuthenticationApi {
         @Body request: ForgotPasswordRequest
     ): ApiResponse<ForgotPasswordResponse>
 
-    @POST("auth/verify-reset-password-token")
+    @GET("auth/verify-reset-password-token")
     suspend fun verifyResetPasswordToken(
-        @Body request: VerifyResetPasswordTokenRequest
+        @Query("token") token: String
     ): ApiResponse<VerifyResetPasswordTokenResponse>
 
     @POST("auth/change-password")
