@@ -1,5 +1,6 @@
 package com.dev.groomi.auth.repository.forgot_password
 
+import android.util.Log
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.auth.dto.forgot_password.ForgotPasswordRequest
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class ForgotPasswordRepository @Inject constructor(
             )
             ForgotPasswordResult.Success
         } catch(error: Exception){
+            Log.e("ForgotPasswordRepository", "submitEmail failed", error)
             ForgotPasswordResult.Failure
         }
     }
