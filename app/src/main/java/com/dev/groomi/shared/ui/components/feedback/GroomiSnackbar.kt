@@ -7,6 +7,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.dev.groomi.ui.theme.Amethyst
 import com.dev.groomi.ui.theme.Dimensions
 import com.dev.groomi.ui.theme.Error
 import com.dev.groomi.ui.theme.RoyalOrchid
@@ -23,7 +24,7 @@ fun GroomiSnackbarHost(
         ) { snackbarData ->
             Snackbar(
                 snackbarData = snackbarData,
-                containerColor = Error,
+                containerColor = Amethyst,
                 contentColor = Color.White,
                 shape = RoundedCornerShape(Dimensions.ButtonCornerRadius)
             )
