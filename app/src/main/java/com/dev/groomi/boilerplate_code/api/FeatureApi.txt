@@ -1,0 +1,15 @@
+package com.dev.groomi.feature.api
+
+import com.dev.groomi.feature.dto.operation.OperationRequest
+import com.dev.groomi.feature.dto.operation.OperationResponse
+import com.dev.groomi.shared.network.ApiResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+
+interface FeatureApi {
+
+    @POST("feature/operation")
+    suspend fun operation(
+        @Body request: OperationRequest
+    ): ApiResponse<OperationResponse>
+}

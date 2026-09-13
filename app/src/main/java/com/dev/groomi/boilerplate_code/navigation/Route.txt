@@ -1,0 +1,29 @@
+package com.dev.groomi.feature.navigation
+
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.dev.groomi.feature.ui.FeatureScreen
+import com.dev.groomi.feature.viewmodel.FeatureViewModel
+
+@Composable
+fun FeatureRoute(
+    navController: NavController
+) {
+    val viewModel: FeatureViewModel = hiltViewModel()
+    val uiState by viewModel.uiState.collectAsState()
+
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    FeatureScreen(
+        uiState = uiState,
+        snackbarHostState = snackbarHostState,
+        // callbacks
+    )
+}

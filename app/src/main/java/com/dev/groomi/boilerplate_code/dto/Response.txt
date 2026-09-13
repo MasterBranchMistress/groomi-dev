@@ -1,0 +1,5 @@
+package com.dev.groomi.feature.dto.operation
+
+data class OperationResponse(
+    // response fields
+)

@@ -1,0 +1,30 @@
+package com.dev.groomi.feature.repository.operation
+
+import com.dev.groomi.feature.api.FeatureApi
+import javax.inject.Inject
+
+class OperationRepository @Inject constructor(
+    private val api: FeatureApi
+) : OperationRepositoryInterface {
+
+    override suspend fun operation(
+        // parameters
+    ): OperationResult {
+        return try {
+            val response = api.operation(
+                // request
+            )
+
+            OperationResult.Success(
+                // response data
+            )
+        } catch (error: HttpException) {
+            val errorResponse = parseErrorMessage(error)
+            OperationResult.Failure(errorResponse)
+        } catch (error: IOException) {
+            OperationResult.Failure(
+                "Network Unavailable. Check your internet connection and try again."
+            )
+        }
+    }
+}

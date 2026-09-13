@@ -1,0 +1,16 @@
+package com.dev.groomi.feature.validation.validators
+
+import com.dev.groomi.feature.validation.fields.OperationFields
+import com.dev.groomi.shared.validation.ValidationResult
+
+object OperationValidator {
+
+    fun validateOperation(
+        // fields
+    ): ValidationResult<OperationFields> {
+
+        // Validation rules
+
+        return ValidationResult.Success
+    }
+}

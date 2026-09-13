@@ -1,0 +1,8 @@
+package com.dev.groomi.feature.repository.operation
+
+interface OperationRepositoryInterface {
+
+    suspend fun operation(
+        // parameters
+    ): OperationResult
+}

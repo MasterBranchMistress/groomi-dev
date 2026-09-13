@@ -1,0 +1,5 @@
+package com.dev.groomi.feature.validation.fields
+
+enum class OperationFields {
+    // FIELD_NAME
+}
