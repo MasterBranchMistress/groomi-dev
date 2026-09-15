@@ -1,0 +1,74 @@
+package com.dev.groomi.<feature>.test_utils
+
+import com.dev.groomi.<feature>.api.<Api>
+import com.dev.groomi.<feature>.dto.<Response>
+import com.dev.groomi.<feature>.repository.<Feature>RepositoryInterface
+import com.dev.groomi.<feature>.repository.<Feature>Result
+import com.dev.groomi.shared.network.ApiResponse
+import kotlinx.coroutines.test.runTest
+import okhttp3.ResponseBody.Companion.toResponseBody
+import org.mockito.kotlin.any
+import org.mockito.kotlin.whenever
+import retrofit2.HttpException
+import retrofit2.Response
+
+object <Feature>Actions {
+
+    fun givenSuccessful<Feature>(api: <Api>): Unit = runTest {
+        whenever(api.<action>(any()))
+            .thenReturn(
+                ApiResponse(
+                    message = "<success message>",
+                    data = <Response>(
+                        /* fixture */
+                    ),
+                    timestamp = ""
+                )
+            )
+    }
+
+    fun givenInvalidInput(api: <Api>): Unit = runTest {
+        whenever(api.<action>(any()))
+            .thenThrow(
+                HttpException(
+                    Response.error<ApiResponse<<Response>>>(
+                        400,
+                        "".toResponseBody()
+                    )
+                )
+            )
+    }
+
+    fun givenUnauthorized(api: <Api>): Unit = runTest {
+        whenever(api.<action>(any()))
+            .thenThrow(
+                HttpException(
+                    Response.error<ApiResponse<<Response>>>(
+                        401,
+                        "".toResponseBody()
+                    )
+                )
+            )
+    }
+
+    fun givenServerError(api: <Api>): Unit = runTest {
+        whenever(api.<action>(any()))
+            .thenThrow(
+                HttpException(
+                    Response.error<ApiResponse<<Response>>>(
+                        500,
+                        "".toResponseBody()
+                    )
+                )
+            )
+    }
+
+    fun givenPending<Feature>(
+        repository: <Feature>RepositoryInterface
+    ) = runTest {
+        whenever(repository.<action>(any()))
+            .thenAnswer {
+                // Keep operation pending.
+            }
+    }
+}

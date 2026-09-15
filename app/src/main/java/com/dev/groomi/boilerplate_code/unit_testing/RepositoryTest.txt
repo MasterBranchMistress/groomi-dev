@@ -1,0 +1,72 @@
+package com.dev.groomi.<feature>
+
+import com.dev.groomi.<feature>.dto.<Request>
+import com.dev.groomi.<feature>.repository.<Feature>Result
+import com.dev.groomi.<feature>.test_utils.<Feature>Actions
+import com.dev.groomi.<feature>.test_utils.<Feature>TestSetup
+import com.dev.groomi.<feature>.test_utils.create<Feature>TestSetup
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+import org.mockito.kotlin.verify
+
+class <Feature>RepositoryTest {
+
+    private lateinit var <feature>Setup: <Feature>TestSetup
+
+    @Before
+    fun given<Feature>Repository() {
+        <feature>Setup = create<Feature>TestSetup()
+    }
+
+    @Test
+    fun successful<Feature>ReturnsSuccess(): Unit = runTest {
+        <Feature>Actions.givenSuccessful<Feature>(
+            <feature>Setup.api
+        )
+
+        val whenOurResult = <feature>Setup.repository.<action>(
+            /* request parameters */
+        )
+
+        Assert.assertTrue(
+            whenOurResult is <Feature>Result.Success
+        )
+
+        verify(<feature>Setup.<dependency>)
+            .<expectedInteraction>(
+                /* expected request */
+            )
+    }
+
+    @Test
+    fun invalidInputReturnsError(): Unit = runTest {
+        <Feature>Actions.givenInvalidInput(
+            <feature>Setup.api
+        )
+
+        val whenOurResult = <feature>Setup.repository.<action>(
+            /* invalid parameters */
+        )
+
+        Assert.assertTrue(
+            whenOurResult is <Feature>Result.Failure
+        )
+    }
+
+    @Test
+    fun serverErrorReturnsFailure(): Unit = runTest {
+        <Feature>Actions.givenServerError(
+            <feature>Setup.api
+        )
+
+        val whenOurResult = <feature>Setup.repository.<action>(
+            /* request parameters */
+        )
+
+        Assert.assertTrue(
+            whenOurResult is <Feature>Result.Failure
+        )
+    }
+}

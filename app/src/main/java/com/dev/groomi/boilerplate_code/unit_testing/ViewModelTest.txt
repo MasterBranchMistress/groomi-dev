@@ -1,0 +1,84 @@
+package com.dev.groomi.<feature>
+
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class <Feature>ViewModelTest {
+
+    private lateinit var testSetup: <Feature>TestSetup
+
+    @Before
+    fun given<Feature>Dependencies() {
+        testSetup = create<Feature>TestSetup()
+    }
+
+    @Test
+    fun initial<Feature>StateIsCorrect() {
+        val state = testSetup.viewModel.uiState.value
+
+        assertEquals(/* expected */, state./* field */)
+        assertFalse(state.isLoading)
+        assertNull(state./* error */)
+    }
+
+    @Test
+    fun `<action> updates <field>() {
+        testSetup.viewModel.<action>(/* value */)
+
+        assertEquals(
+            /* expected */,
+            testSetup.viewModel.uiState.value./* field */
+        )
+    }
+
+    @Test
+    fun `<invalid condition> returns ui error`() {
+        testSetup.viewModel.<action>(/* invalid value */)
+
+        testSetup.viewModel.<submitAction>({}, {})
+
+        assertEquals(
+            /* expected error */,
+            testSetup.viewModel.uiState.value./* error */
+        )
+    }
+
+    @Test
+    fun `<successful operation> updates state`() = runTest {
+        // Arrange
+
+        // Act
+        testSetup.viewModel.<action>({}, {})
+
+        advanceUntilIdle()
+
+        // Assert
+        assertFalse(testSetup.viewModel.uiState.value.isLoading)
+        assertEquals(/* expected */, testSetup.viewModel.uiState.value./* field */)
+    }
+
+    @Test
+    fun `<failed operation> returns error`() = runTest {
+        // Arrange
+
+        // Act
+        testSetup.viewModel.<action>({}, {})
+
+        advanceUntilIdle()
+
+        // Assert
+        assertFalse(testSetup.viewModel.uiState.value.isLoading)
+        assertEquals(
+            /* expected error */,
+            testSetup.viewModel.uiState.value./* error */
+        )
+    }
+}

@@ -1,18 +1,10 @@
 package com.dev.groomi.auth.login
 
-import com.dev.groomi.auth.login.test_utils.LoginActions
 import com.dev.groomi.auth.login.test_utils.LoginTestSetup
 import com.dev.groomi.auth.login.test_utils.createLoginTestSetup
-import com.dev.groomi.auth.repository.login.LoginResult
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.runCurrent
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 

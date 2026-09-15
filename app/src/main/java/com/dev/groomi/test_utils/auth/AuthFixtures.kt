@@ -1,5 +1,6 @@
 package com.dev.groomi.test_utils.auth
 
+import com.dev.groomi.auth.dto.change_password.ChangePasswordResponse
 import com.dev.groomi.auth.dto.login.LoginResponse
 import com.dev.groomi.auth.dto.register.RegisterResponse
 
@@ -16,5 +17,7 @@ object AuthFixtures {
         success = true,
         message = "User registered successfully"
     )
+
+    fun validResetPasswordResponse()= ChangePasswordResponse(message = "password changed successfully")
 
 }

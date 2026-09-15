@@ -1,0 +1,33 @@
+package com.dev.groomi.<feature>.test_utils
+
+import com.dev.groomi.<feature>.api.<Api>
+import com.dev.groomi.<feature>.repository.<Feature>Repository
+import com.dev.groomi.<feature>.viewmodel.<Feature>ViewModel
+import com.dev.groomi.shared.local.auth.TokenManager
+import org.mockito.kotlin.mock
+
+data class <Feature>TestSetup(
+    val repository: <Feature>Repository,
+    val api: <Api>,
+    val tokenManager: TokenManager,
+    val viewModel: <Feature>ViewModel
+)
+
+fun create<Feature>TestSetup(): <Feature>TestSetup {
+    val api = mock<<Api>>()
+    val tokenManager = mock<TokenManager>()
+
+    val repository = <Feature>Repository(
+        api,
+        tokenManager
+    )
+
+    val viewModel = <Feature>ViewModel(repository)
+
+    return <Feature>TestSetup(
+        repository = repository,
+        api = api,
+        tokenManager = tokenManager,
+        viewModel = viewModel
+    )
+}
