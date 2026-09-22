@@ -1,5 +1,6 @@
 package com.dev.groomi.auth.viewmodel
 
+import android.service.autofill.UserData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.groomi.auth.feedback.LoginErrorMessages
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.serialization.descriptors.StructureKind
 import javax.inject.Inject
 
 data class AuthenticationUiState(

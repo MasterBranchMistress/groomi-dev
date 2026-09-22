@@ -13,10 +13,6 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="ForgotPasswordScreenPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DialogSelection />
-      </SelectionState>
       <SelectionState runConfigName="PendingResetLinkScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
@@ -30,6 +26,10 @@
             </handle>
           </Target>
         </DropdownSelection>
+        <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="FeatureScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>
     </selectionStates>

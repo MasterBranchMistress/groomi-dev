@@ -1,5 +1,7 @@
 package com.dev.groomi.shared.dependency_injection
 
+import com.dev.groomi.auth.repository.account_verification.PendingAccountVerificationRepository
+import com.dev.groomi.auth.repository.account_verification.PendingAccountVerificationRepositoryInterface
 import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordRepository
 import com.dev.groomi.auth.repository.forgot_password.ForgotPasswordRepositoryInterface
 import com.dev.groomi.auth.repository.login.LoginRepository
@@ -35,4 +37,9 @@ abstract class RepositoryModule {
     abstract fun verifyPasswordResetRepository(
         repository: VerifyPasswordResetTokenRepository
     ): VerifyPasswordResetTokenRepositoryInterface
+
+    @Binds
+    abstract fun verifyAccountRepository(
+        repository: PendingAccountVerificationRepository
+    ): PendingAccountVerificationRepositoryInterface
 }

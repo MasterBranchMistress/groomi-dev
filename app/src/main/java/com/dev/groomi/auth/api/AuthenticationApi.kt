@@ -10,6 +10,8 @@ import com.dev.groomi.auth.dto.login.LoginResponse
 import com.dev.groomi.auth.dto.logout.LogoutResponse
 import com.dev.groomi.auth.dto.register.RegisterRequest
 import com.dev.groomi.auth.dto.register.RegisterResponse
+import com.dev.groomi.auth.dto.verify_account.PendingAccountVerificationRequest
+import com.dev.groomi.auth.dto.verify_account.PendingAccountVerificationResponse
 import com.dev.groomi.auth.dto.verify_reset_password_token.VerifyResetPasswordTokenRequest
 import com.dev.groomi.auth.dto.verify_reset_password_token.VerifyResetPasswordTokenResponse
 import com.dev.groomi.shared.network.ApiResponse
@@ -24,6 +26,11 @@ interface AuthenticationApi {
     suspend fun login(
         @Body request: LoginRequest
     ): ApiResponse<LoginResponse>
+
+    @POST("auth/verify-account")
+    suspend fun verifyAccount(
+        @Body request: PendingAccountVerificationRequest
+    ): ApiResponse<PendingAccountVerificationResponse>
 
     @POST("auth/register")
     suspend fun register(

@@ -7,7 +7,7 @@ object AuthenticationValidator {
 
     fun validateLogin(
         email: String,
-        password: String
+        password: String,
     ): ValidationResult<AuthenticationFields> {
 
         if (email.isBlank()) {

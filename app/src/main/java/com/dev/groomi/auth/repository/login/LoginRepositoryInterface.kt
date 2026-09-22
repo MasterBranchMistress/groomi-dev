@@ -4,6 +4,6 @@ interface LoginRepositoryInterface {
 
     suspend fun login(
         email: String,
-        password: String
+        password: String,
     ): LoginResult
 }
