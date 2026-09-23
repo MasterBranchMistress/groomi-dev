@@ -10,7 +10,10 @@ import com.dev.groomi.auth.navigation.auth.ForgotPasswordRoute
 import com.dev.groomi.auth.navigation.auth.LoginRoute
 import com.dev.groomi.auth.navigation.auth.PendingResetLinkRoute
 import com.dev.groomi.auth.navigation.auth.RegisterRoute
+import com.dev.groomi.auth.navigation.auth.RegisterSuccessRoute
 import com.dev.groomi.auth.navigation.auth.ResetPasswordRoute
+import com.dev.groomi.auth.navigation.auth.SuccessfulAccountVerificationRoute
+import com.dev.groomi.auth.ui.RegisterSuccessScreen
 import com.dev.groomi.dashboard.navigation.DashboardRoute
 
 
@@ -32,6 +35,17 @@ fun AppNavigation(){
         }
         composable(Screen.Dashboard.route) {
             DashboardRoute(navController)
+        }
+        composable(Screen.RegisterSuccess.route) {
+            RegisterSuccessRoute(navController)
+        }
+        composable(Screen.AccountVerificationSuccess.route,
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = "groomr://verify-new-account?token={token}"
+                }
+            )) {
+            SuccessfulAccountVerificationRoute(navController)
         }
         composable(
             Screen.ResetPassword.route,

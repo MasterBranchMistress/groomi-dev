@@ -6,6 +6,10 @@ sealed class Screen(val route: String) {
 
     object Register : Screen("register")
 
+    object RegisterSuccess: Screen("register-success")
+
+    object AccountVerificationSuccess: Screen("account-verify-success")
+
     object ForgotPassword : Screen("forgot-password")
 
     object ResetPassword : Screen("reset-password?token={token}")

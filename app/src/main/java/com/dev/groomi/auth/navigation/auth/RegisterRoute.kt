@@ -29,7 +29,7 @@ fun RegisterRoute(navController: NavController) {
         onConfirmPasswordChange = viewModel::onConfirmPasswordChange,
         onRegisterClick = {
             viewModel.onRegisterClick(
-                onSuccess = { navController.navigate(Screen.Login.route) },
+                onSuccess = { navController.navigate(Screen.RegisterSuccess.route) },
                 onFailure = { error ->
                     scope.launch {
                         snackbarHostState.showSnackbar(

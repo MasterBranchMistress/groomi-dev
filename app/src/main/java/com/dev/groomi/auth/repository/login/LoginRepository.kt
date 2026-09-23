@@ -10,13 +10,12 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor (private val api: AuthenticationApi, private val tokenManager: TokenManager): LoginRepositoryInterface{
-    override suspend fun login(email: String, password: String, accountVerified: Boolean): LoginResult {
+    override suspend fun login(email: String, password: String): LoginResult {
         return try {
            val response = api.login(
                 LoginRequest(
                     email = email,
-                    password = password,
-                    accountVerified =  accountVerified
+                    password = password
                 )
             )
             tokenManager.saveToken(response.data.token)
