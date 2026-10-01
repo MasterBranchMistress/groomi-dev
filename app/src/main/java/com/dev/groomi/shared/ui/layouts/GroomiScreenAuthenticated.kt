@@ -24,6 +24,9 @@ fun GroomiScreenAuthenticated(
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Scaffold(
+        topBar = {
+            DashboardHeader("My Dashboard", "See Today's Itinerary")
+        },
         snackbarHost = {
             GroomiSnackbarHost(hostState = snackbarHostState)
         }
@@ -34,7 +37,6 @@ fun GroomiScreenAuthenticated(
                 .padding(paddingValues)
         ) {
             GroomiScreenBackground()
-            DashboardHeader("My Dashboard", "See Today's Work")
             Column(
                 modifier = Modifier
                     .fillMaxSize()
