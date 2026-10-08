@@ -10,6 +10,8 @@ import com.dev.groomi.auth.repository.register.RegisterRepository
 import com.dev.groomi.auth.repository.register.RegisterRepositoryInterface
 import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRepository
 import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRepositoryInterface
+import com.dev.groomi.dashboard.repository.DashboardRepository
+import com.dev.groomi.dashboard.repository.DashboardRepositoryInterface
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -42,4 +44,9 @@ abstract class RepositoryModule {
     abstract fun verifyAccountRepository(
         repository: PendingAccountVerificationRepository
     ): PendingAccountVerificationRepositoryInterface
+
+    @Binds
+    abstract fun dashboardRepository(
+        repository: DashboardRepository
+    ): DashboardRepositoryInterface
 }
