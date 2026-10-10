@@ -43,7 +43,7 @@ fun GroomiScreenAuthenticated(
                     .padding(Spacing.lg)
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 content = content
             )
         }
