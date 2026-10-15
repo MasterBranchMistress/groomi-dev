@@ -4,8 +4,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Message
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -23,9 +26,11 @@ fun DashboardHeader(
     title: String,
     subtitle: String? = null,
     onBackClick: () -> Unit = {},
-    onCalendarClick: () -> Unit = {},
+    onSearchClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
-    onNotificationsClick: () -> Unit = {}
+    onNotificationsClick: () -> Unit = {},
+    onCalendarClick: () -> Unit = {},
+    onChatClick: () -> Unit = {}
 ) {
     TopAppBar(
         navigationIcon = {
@@ -56,7 +61,14 @@ fun DashboardHeader(
             IconButton(onClick = onCalendarClick) {
                 Icon(
                     imageVector = Icons.Filled.CalendarMonth,
-                    contentDescription = "View Full Schedule"
+                    contentDescription = "Schedule"
+                )
+            }
+
+            IconButton(onClick = onSearchClick) {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = "Search"
                 )
             }
             IconButton(onClick = onSettingsClick) {
