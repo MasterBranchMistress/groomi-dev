@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.groomi.dashboard.repository.DashboardRepositoryInterface
 import com.dev.groomi.dashboard.repository.LoadUserDashboardResult
+import com.dev.groomi.shared.ui.components.search.GroomiSearchData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,9 @@ data class DashboardUiState(
     val firstName: String = "",
     val lastName: String = "",
     val email: String = "",
+    val searchQuery: String = "",
+    val isSearchExpanded: Boolean = false,
+    val searchResults: List<String> = emptyList(),
     val error: String? = null
 )
 
@@ -32,7 +36,6 @@ class DashboardViewModel @Inject constructor(
 
     fun loadUserDashboard() {
         viewModelScope.launch {
-            setLoadingState(true)
             when (val result = repository.loadUserDashboard()) {
                 is LoadUserDashboardResult.Success -> {
                     val user = result.data.data
@@ -60,10 +63,28 @@ class DashboardViewModel @Inject constructor(
             }
         }
     }
-
-    private fun setLoadingState(isLoading: Boolean) {
+    fun onSearchQueryChanged(query: String) {
         _uiState.update {
-            it.copy(isLoading = isLoading)
+            it.copy(searchQuery = query)
+        }
+    }
+
+    fun onSearchExpandedChange(expanded: Boolean) {
+        _uiState.update {
+            it.copy(isSearchExpanded = expanded)
+        }
+    }
+
+    fun onSearchSubmitted(query: String) {
+        val normalizedQuery=  query.trim()
+        val results = GroomiSearchData.search(normalizedQuery)
+
+        _uiState.update {
+            it.copy(
+                searchQuery = query,
+                searchResults = results,
+                isSearchExpanded = false
+            )
         }
     }
 }

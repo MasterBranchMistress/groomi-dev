@@ -25,7 +25,10 @@ fun DashboardRoute(
     LaunchedEffect(Unit) {
         viewModel.loadUserDashboard()
     }
-        DashboardScreen(
-            uiState = uiState
-        )
+    DashboardScreen(
+        uiState = uiState,
+        onSearchQueryChanged = viewModel::onSearchQueryChanged,
+        onSearchSubmitted = viewModel::onSearchSubmitted,
+        onSearchExpandedChange = viewModel::onSearchExpandedChange
+    )
 }
