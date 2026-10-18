@@ -56,7 +56,8 @@ fun GroomiScreenAuthenticated(
             Column {
                 DashboardHeader("My Dashboard",
                     "See Today's Itinerary",
-                    onSearchClick = toggleSearchBar)
+                    onSearchClick = toggleSearchBar,
+                    isSearchActive = isSearchExpanded)
                 if(isSearchExpanded){
                     GroomiSearchBar(
                         query = searchQuery,

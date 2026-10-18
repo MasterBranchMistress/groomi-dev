@@ -1,7 +1,9 @@
 package com.dev.groomi.shared.ui.components.headers
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Message
@@ -18,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,6 +29,7 @@ fun DashboardHeader(
     title: String,
     subtitle: String? = null,
     onBackClick: () -> Unit = {},
+    isSearchActive: Boolean = false,
     onSearchClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
     onNotificationsClick: () -> Unit = {},
@@ -58,17 +62,29 @@ fun DashboardHeader(
             }
         },
         actions = {
-            IconButton(onClick = onCalendarClick) {
+            IconButton(onClick = onCalendarClick){
                 Icon(
                     imageVector = Icons.Filled.CalendarMonth,
-                    contentDescription = "Schedule"
+                    contentDescription = "Schedule",
                 )
             }
-
-            IconButton(onClick = onSearchClick) {
+            IconButton(onClick = onSearchClick,
+                modifier = Modifier.background(
+                    color = if (isSearchActive) {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    } else {
+                        Color.Transparent
+                    },
+                    shape = CircleShape
+                )
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Search,
-                    contentDescription = "Search"
+                    contentDescription = "Search",
+                    tint = if (isSearchActive)
+                    { MaterialTheme.colorScheme.onSecondaryContainer }
+                    else
+                    { MaterialTheme.colorScheme.onSurfaceVariant }
                 )
             }
             IconButton(onClick = onSettingsClick) {
