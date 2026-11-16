@@ -29,8 +29,6 @@ import com.dev.groomi.ui.theme.Spacing
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.PreviewDynamicColors
 
 @Composable
 fun GroomiScreenAuthenticated(

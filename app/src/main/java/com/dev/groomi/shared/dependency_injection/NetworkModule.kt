@@ -3,6 +3,7 @@ package com.dev.groomi.shared.dependency_injection
 import android.content.Context
 import com.dev.groomi.auth.api.AuthenticationApi
 import com.dev.groomi.dashboard.api.DashboardApi
+import com.dev.groomi.pet_owner.api.OwnerApi
 import com.dev.groomi.shared.local.auth.AuthInterceptor
 import com.dev.groomi.shared.local.auth.TokenManager
 import com.dev.groomi.shared.network.NetworkConstants
@@ -66,4 +67,13 @@ object NetworkModule {
         retrofit: Retrofit
     ): DashboardApi =
         retrofit.create(DashboardApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideOwnerApi(
+        retrofit: Retrofit
+    ): OwnerApi =
+        retrofit.create(OwnerApi::class.java)
+
+
 }

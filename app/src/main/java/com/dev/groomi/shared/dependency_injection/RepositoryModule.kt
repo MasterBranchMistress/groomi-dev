@@ -12,6 +12,8 @@ import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRep
 import com.dev.groomi.auth.repository.reset_password.VerifyPasswordResetTokenRepositoryInterface
 import com.dev.groomi.dashboard.repository.DashboardRepository
 import com.dev.groomi.dashboard.repository.DashboardRepositoryInterface
+import com.dev.groomi.pet_owner.repository.OwnerRepository
+import com.dev.groomi.pet_owner.repository.OwnerRepositoryInterface
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -49,4 +51,9 @@ abstract class RepositoryModule {
     abstract fun dashboardRepository(
         repository: DashboardRepository
     ): DashboardRepositoryInterface
+
+    @Binds
+    abstract fun ownerRepository(
+        repository: OwnerRepository
+    ): OwnerRepositoryInterface
 }
